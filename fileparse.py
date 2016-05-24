@@ -7,6 +7,7 @@ f = open('workfile', 'r')
 text = []
 
 while(line is not ""):
-  text += [f.readLine()]
+  line = f.readLine()
+  text += [line[:len(line)-2]] #-2 is to remove \n from line end
 
 print(text)
