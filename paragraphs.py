@@ -21,8 +21,8 @@ paragraph = paragraph[0]
 
 print(paragraph)
 
-quotes = [[]] #will hold tuples of <start quote , end quote> values
-citations = [[]] #will hold tuples of <start citation, end citation> values
+quotes = [] #will hold tuples of <start quote , end quote> values
+citations = [] #will hold tuples of <start citation, end citation> values
 
 qbeg = -1 #will store locations of first quote
 cbeg = -1 #will store locations of first paren
