@@ -6,10 +6,13 @@ def parse():
     
     text = []
     
-    while(line is not ""):
-      line = f.readLine()
-      if line is not "\n":
-        text += [line[:len(line)-2]] #-2 is to remove \n from line end
+    line = f.readline()
     
+    while(line is not ""):
+        if line is not "\n":
+            text += [line[:len(line)-2]] #-2 is to remove \n from line end
+        line = f.readline()
     print(text)
+    
+    return text
     
