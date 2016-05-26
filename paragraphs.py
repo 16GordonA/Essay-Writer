@@ -3,6 +3,7 @@ Takes paragraph as text string, parses for quotes, searches internet to find ful
 
 Several different types of paragraphs which will be formed using the inputted quotes
 '''
+from fileparse import *
 
 qmarks = ['"'] #quotation marks since... there are several for some reason
 
@@ -15,6 +16,8 @@ paragraph +='ht" (v,vii). Finally, Shakespeare concludes that, though a break-up
 paragraph +='s might" (xii), it will alleviate the suffering caused by the Poet'+"'"+'s other misfortunes. However, this romantic outlook on th'
 paragraph +='eir love is tempered by the use of military language throughout the sonnet.'
 
+paragraph = parse()
+paragraph = paragraph[0]
 
 print(paragraph)
 
