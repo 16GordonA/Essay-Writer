@@ -16,8 +16,36 @@ paragraph +='ht" (v,vii). Finally, Shakespeare concludes that, though a break-up
 paragraph +='s might" (xii), it will alleviate the suffering caused by the Poet'+"'"+'s other misfortunes. However, this romantic outlook on th'
 paragraph +='eir love is tempered by the use of military language throughout the sonnet.'
 
-paragraph = parse()
-paragraph = paragraph[0]
+def match(quotes, citations):
+
+    matched = [] #[ [ ["quote" , "quote"] , (citation)] , [ ["quote" , "quote"] , (citation)] ]
+    temp = []
+    
+    c = 0
+    q = 0
+    
+    while q < len(quotes):
+        #print(q)
+        if quotes[q][1] < citations[c][0]: #if quote is before that citation
+            temp = temp + [ paragraph[quotes[q][0] : quotes[q][1]] ]
+            #print(temp)
+            q = q + 1
+            
+        else:
+            matched = matched + [temp , paragraph[citations[c][0] : citations[c][1]] ]
+            #print(matched)
+            temp = []
+            c = c + 1
+            #print ('reached')
+    
+    matched = matched + [temp , paragraph[citations[c][0] : citations[c][1]] ]
+    #print(matched)
+    
+    return matched
+
+
+paragraphs = parse()
+paragraph = paragraphs[0] + ' ' + paragraphs[1]
 
 print(paragraph)
 
@@ -33,11 +61,11 @@ for i in range(len(paragraph)): #sweeps paragraph
             quotes = quotes + [[qbeg, i]]
             qbeg = -1
         else:
-            qbeg = i
+            qbeg = i + 1
     
     elif paragraph[i:i+1] == '(' or paragraph[i:i+1] == ')':
         if cbeg >= 0:
-            citations = citations + [[cbeg, i]]
+            citations = citations + [[cbeg, i + 1]]
             cbeg = -1
         else:
             cbeg = i
@@ -45,3 +73,6 @@ for i in range(len(paragraph)): #sweeps paragraph
 print(quotes)
 print(citations)
 
+m = match(quotes, citations)
+
+print(m)
