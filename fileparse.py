@@ -14,7 +14,8 @@ def parse():
         line = f.readline()
          
     
-    text.remove('')
+    while('' in text):
+        text.remove('')
             
     print(text)
     

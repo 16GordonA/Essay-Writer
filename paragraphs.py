@@ -32,16 +32,31 @@ def match(quotes, citations):
             q = q + 1
             
         else:
-            matched = matched + [temp , paragraph[citations[c][0] : citations[c][1]] ]
+            matched = matched + [[temp , paragraph[citations[c][0] : citations[c][1]] ]]
             #print(matched)
             temp = []
             c = c + 1
             #print ('reached')
     
-    matched = matched + [temp , paragraph[citations[c][0] : citations[c][1]] ]
+    matched = matched + [[temp , paragraph[citations[c][0] : citations[c][1]] ]]
     #print(matched)
     
+    #adds authors for all quotes
+    
+    print(matched)
+    
+    mrauthor = 'default' #most recent author
+    
+    for p in range(len(matched)):
+        cit = matched[p][1]
+        if ',' in cit and cit.index(',') > 5: #crude method of making sure it's not a citation like (72,74)
+            mrauthor = cit[1:cit.index(',')]
+            print(mrauthor)
+        
+        matched[p] = matched[p] + [mrauthor] #appends author to citation
+    
     return matched
+
 
 
 paragraphs = parse()
